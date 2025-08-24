@@ -1,5 +1,6 @@
 let theme_names = [
     "classic",
+    "dark_revive",
     "dark_teal",
     "african_morning",
     "neon_bar",
