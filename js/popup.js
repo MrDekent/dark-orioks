@@ -20,83 +20,76 @@ let theme_descs = [
 
 
 $(function() {
-    chrome.storage.sync.get("theme", function (opt) {
+    // Load last selected theme
+    chrome.storage.sync.get("theme", (opt) => {
         $("#theme").val(opt.theme ? opt.theme : 0).selected = true;
     });
-    chrome.storage.sync.get("beatynav", function (opt) {
+
+    // Load beauty nav state
+    chrome.storage.sync.get("beatynav", (opt) => {
         console.log(opt);
-        if (opt){
-            $("#beatynavbar").checked = true;
-        }
-        else {
-            $("#beatynavbar").checked = false;
-        }
+        $("#beatynavbar").checked = opt;
     });
 
-    let selectbeaty = $("#beatynavbar");
-    let beatyfication = selectbeaty.is(":checked");
-
-    chrome.storage.sync.get("beatynav", function (opt) {
+    chrome.storage.sync.get("beatynav",  (opt) => {
         console.log("AAA " + opt.beatynav);
         $("#beatynavbar").prop("checked", opt.beatynav);
     });
 
     let select = $("#theme");
     let theme = select.val();
+
+    let selectbeaty = $("#beatynavbar");
+    let beatification = selectbeaty.is(":checked");
+
+    // On theme selected
     select.change(function () {
         let theme = select.val();
-        let beatyfication = selectbeaty.is(":checked");
+        let beatification = selectbeaty.is(":checked");
         chrome.storage.sync.set({"theme": theme}, function() {});
-        if (theme > 0) {
-            chrome.scripting.updateContentScripts([{
-                id: "content-scripts",
-                js: ["js/main.js", "js/" + theme_names[theme] + ".js"],
-                css: (!beatyfication ? ["assets/css/main.css", "assets/css/" + theme_names[theme] + ".css"] : ["assets/css/main.css", "assets/css/" + theme_names[theme] + ".css", "assets/css/beaty_navbar.css"])
-            }]);
-        } else {
-            chrome.scripting.updateContentScripts([{
-                id: "content-scripts",
-                js: ["js/classic.js"],
-                css: ["assets/css/classic.css"]
-            }]);
-        }
-        $("#description").html(theme_descs[theme]);
-        chrome.tabs.query({url: "https://orioks.miet.ru/*"}, function (tabs) {
-            for (let i = 0; i < tabs.length; i++) {
-                chrome.tabs.reload(tabs[i].id);
-            }
-        });
+        updateTheme(theme, beatification)
     });
 
-
+    // On "Is updated nav" selected
     selectbeaty.change(function () {
         let theme = select.val();
         let selectbeaty = $("#beatynavbar");
-        let beatyfication = selectbeaty.is(":checked");
-        console.log(beatyfication);
-        chrome.storage.sync.set({"beatynav": beatyfication}, function() {});
-        if (theme > 0) {
-            chrome.scripting.updateContentScripts([{
-                id: "content-scripts",
-                js: ["js/main.js", "js/" + theme_names[theme] + ".js"],
-                css: (!beatyfication ? ["assets/css/main.css", "assets/css/" + theme_names[theme] + ".css"] : ["assets/css/main.css", "assets/css/" + theme_names[theme] + ".css", "assets/css/beaty_navbar.css"])
-            }]);
-        } else {
-            chrome.scripting.updateContentScripts([{
-                id: "content-scripts",
-                js: ["js/classic.js"],
-                css: ["assets/css/classic.css"]
-            }]);
-        }
-        $("#description").html(theme_descs[theme]);
-        chrome.tabs.query({url: "https://orioks.miet.ru/*"}, function (tabs) {
-            for (let i = 0; i < tabs.length; i++) {
-                chrome.tabs.reload(tabs[i].id);
-            }
-        });
+        let beatification = selectbeaty.is(":checked");
+        console.log(beatification);
+        chrome.storage.sync.set({"beatynav": beatification}, function() {});
+        updateTheme(theme, beatification)
     });
-
 });
+
+/** Theme reloading function
+ * @param theme : number theme index
+ * @param beatification : boolean is updated nav
+ * */
+function updateTheme(theme, beatification = false) {
+    if (theme > 0) {
+        chrome.scripting.updateContentScripts([{
+            id: "content-scripts",
+            js: ["js/main.js", "js/" + theme_names[theme] + ".js"],
+            css: (
+                beatification
+                ? ["assets/css/main.css", "assets/css/" + theme_names[theme] + ".css", "assets/css/beaty_navbar.css"]
+                : ["assets/css/main.css", "assets/css/" + theme_names[theme] + ".css"]
+            )
+        }]);
+    } else {
+        chrome.scripting.updateContentScripts([{
+            id: "content-scripts",
+            js: ["js/classic.js"],
+            css: ["assets/css/classic.css"]
+        }]);
+    }
+    $("#description").html(theme_descs[theme]);
+    chrome.tabs.query({url: "https://orioks.miet.ru/*"}, function (tabs) {
+        for (let i = 0; i < tabs.length; i++) {
+            chrome.tabs.reload(tabs[i].id);
+        }
+    });
+}
 
 
 $(function() {
