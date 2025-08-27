@@ -1,0 +1,39 @@
+:root {
+    --dlc: #ffffff        ; /* Primary */
+    --ddc: #dddddd        ; /* Primary active */
+
+    --bdc: #eeeeee        ; /* Background */
+    --blc: #ffffff        ; /* Panel */
+    --bmlc: #f6f6f6       ; /* Panel light */
+
+    --hovergrayc: #d4d4d4 ; /* Hover */
+    --borderc: #d2d2d2    ; /* Border */
+
+    --hrefc: #315569; /* Link */
+    --hrefconh: #43728d; /* Link active */
+    --textcolor: black    ; /* Text */
+    --alertc: #3c2b2b     ; /* Alert ? */
+    --alertd: #9e6124     ; /* Alert danger */
+    --alertw: #FDF0DBFF     ; /* Alert warning */
+    --alertwtext: #9f670c; /* Alert warning */
+
+    --darkgreenc: #223322 ;
+    --darkredc: #332222   ;
+    --addbluec: #0084B3   ;
+    --addredc: #F06449    ;
+    --grade1c: #7a0c19    ;
+    --grade2c: #df0707    ;
+    --grade3c: #f48c06    ;
+    --grade4c: #80ac5f    ;
+    --grade5c: #4f702b    ;
+
+    --smallrnd: 5px       ;
+    --medrnd: 10px        ;
+    --bigrnd: 10px        ;
+    --largernd: 25px      ;
+    --infrnd: 999px       ;
+    --border: 1px solid var(--borderc); /* Common border */
+    --transfast: 0.1s ease-in-out;
+    --transmid: 0.2s ease-in-out;
+    --transslow: 0.3s ease-in-out;
+}
