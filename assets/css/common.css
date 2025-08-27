@@ -1,3 +1,54 @@
+/* COMMON STYLES FOR ALL THEMES */
+
+/* VARIABLES: */
+:root {
+    --dlc: #00897B        ; /* Primary */
+    --ddc: #00564D        ; /* Primary active */
+    --bdc: #101014        ; /* Background */
+    --blc: #18181c        ; /* Panel */
+    --bmlc: #26262a       ; /* Panel light */
+    --hovergrayc: #424242 ; /* Hover */
+    --borderc: #2d2d30    ; /* Border */
+    --hrefc: #68B7DE      ; /* Link */
+    --hrefconh: #ABD7ED   ; /* Link active */
+    --textcolor: white    ; /* Text */
+    --alertc: #3c2b2b     ; /* Alert ? */
+    --alertd: #9e6124     ; /* Alert danger */
+    --alertw: #F2C97D28   ; /* Alert warning */
+    --alertwtext: #f2c97d ; /* Alert warning text */
+
+    --darkgreenc: #223322 ;
+    --darkredc: #332222   ;
+    --addbluec: #0084B3   ;
+    --addredc: #F06449    ;
+    --grade1c: #7a0c19    ;
+    --grade2c: #df0707    ;
+    --grade3c: #f48c06    ;
+    --grade4c: #80ac5f    ;
+    --grade5c: #4f702b    ;
+
+    --smallrnd: 5px;
+    --medrnd: 10px;
+    --bigrnd: 15px;
+    --largernd: 25px;
+    --infrnd: 999px;
+
+    --lentiny: 4px;
+    --lensmall: 8px;
+    --lensmall2x: calc(var(--lensmall) * 2);
+    --lenmid: 12px;
+    --lenmid2x: calc(var(--lenmid) * 2);
+    --lenlarge: 16px;
+    --lenlarge2x: calc(var(--lenlarge) * 2);
+    --lenhuge: 20px;
+
+    --border: 1px solid var(--borderc); /* Common border */
+    --transfast: 0.1s ease-in-out;
+    --transmid: 0.2s ease-in-out;
+    --transslow: 0.3s ease-in-out;
+}
+/* themes should override variables */
+
 select,
 textarea {
     border-radius: var(--smallrnd) !important
@@ -5,45 +56,14 @@ textarea {
 
 *,
 div.panel-body h4,
-table.table-condensed tbody tr td {
+table.table-condensed tbody tr td,
+#news table.table.table-bordered tbody tr td a.glyphicon{
     font-family: 'Source Sans Pro', sans-serif
-}
-
-:root {
-    --ddc: #2d2d30;
-    --dlc: #18181c;
-    --bdc: #101014;
-    --blc: #18181c;
-    --bmlc: #26262a;
-    --hovergrayc: #424242;
-    --borderc: #2d2d30;
-    --hrefc: #68B7DE;
-    --hrefconh: #ABD7ED;
-    --textcolor: white;
-    --smallrnd: 5px;
-    --medrnd: 10px;
-    --bigrnd: 15px;
-    --largernd: 25px;
-    --infrnd: 999px;
-    --darkgreenc: #223322;
-    --darkredc: #332222;
-    --addbluec: #0084B3;
-    --addredc: #F06449;
-    --grade1c: #7a0c19;
-    --grade2c: #df0707;
-    --grade3c: #f48c06;
-    --grade4c: #80ac5f;
-    --grade5c: #4f702b;
-    --alertc: #3b342b;
-    --alertd: #4e4436;
-    --border: 1px solid var(--borderc);
-    --transfast: 0.1s ease-in-out;
-    --transmid: 0.2s ease-in-out;
-    --transslow: 0.3s ease-in-out;
 }
 
 @font-face {
     font-family: 'Source Sans Pro';
+    /*noinspection CssUnknownTarget*/
     src: url('chrome-extension://__MSG_@@extension_id__/assets/fonts/SourceSansPro-SemiBold.woff2')
 }
 
@@ -163,6 +183,9 @@ td span.grade {
     text-align: center !important;
     width: 50px !important
 }
+#bp:is(:hover, :focus, :active) {
+    background: var(--hovergrayc) !important;,
+}
 
 nav:not(.dropdown_toggle) {
     background: var(--dlc);
@@ -266,7 +289,9 @@ div.well.ng-binding p a {
 
 span.label {
     border-radius: var(--infrnd) !important;
-    font-size: 10px
+    font-size: 10px;
+    padding-top: var(--lentiny) !important;
+    padding-bottom: var(--lentiny) !important;
 }
 
 span.label-warning {
@@ -282,6 +307,10 @@ div.panel-body h4 {
     margin-left: 5px
 }
 
+table.table-condensed thead tr th {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
 table.table-condensed tbody tr td {
     font-size: 13px !important
 }
@@ -341,6 +370,7 @@ div.modal-footer a.pull-left {
     border-radius: var(--medrnd)
 }
 
+/* TABLES like "practice" */
 table.table.table-bordered {
     border: var(--border) !important;
     border-radius: var(--medrnd) !important;
@@ -348,23 +378,23 @@ table.table.table-bordered {
     border-collapse: separate;
     overflow: hidden;
 }
-
+table.table.table-bordered tr,
+table.table.table-bordered tr td {
+    background-color: transparent !important;
+}
 table.table.table-bordered tr th {
     background: var(--bmlc) !important;
 }
-
 table.table.table-bordered tr td,
 table.table.table-bordered tr th {
     border: none !important;
     padding: 12px !important;
 }
-
 /* Apply a border to the right of all but the last column */
 table.table.table-bordered th:not(:last-child),
 table.table.table-bordered td:not(:last-child) {
     border-right: var(--border) !important;
 }
-
 /* Apply a border to the bottom of all but the last row */
 table.table.table-bordered>thead>tr:not(:last-child)>th,
 table.table.table-bordered>thead>tr:not(:last-child)>td,
@@ -380,6 +410,7 @@ table.table.table-bordered>tfoot:not(:last-child) {
     border-bottom: var(--border) !important;
 }
 
+
 div.row div.badge,
 span.pull-right {
     background: var(--bmlc) !important;
@@ -387,34 +418,35 @@ span.pull-right {
     font-size: 12px
 }
 
-table.table.table-hover {
+table.table.table-hover thead tr th {
+    font-size: 18px;
+}
+
+table.table.table-hover:not(.table-condensed) {
     border-collapse: separate;
-    -webkit-border-vertical-spacing: 12px;
+    -webkit-border-vertical-spacing: var(--medrnd);
 }
-
-table.table.table-hover tbody tr {
-    background-color: var(--blc) !important;
-    /*margin-top: 12px !important;*/
+table.table.table-hover:not(.table-condensed) tbody tr {
+    background: var(--blc) !important;
+    transition: background-color var(--transmid);
 }
-
-table.table.table-hover tbody tr td {
+table.table.table-hover:not(.table-condensed) tbody tr td {
     border: none !important;
     border: var(--border) !important;
     border-width: 1px 0 !important;
 }
-table.table.table-hover tbody tr td:first-child {
+table.table.table-hover:not(.table-condensed) tbody tr td:first-child {
     border-radius: var(--smallrnd) 0 0 var(--smallrnd) !important;
     border-width: 1px 0 1px 1px !important;
 }
-table.table.table-hover tbody tr td:last-child {
-     border-radius: 0 var(--smallrnd) var(--smallrnd) 0 !important;
+table.table.table-hover:not(.table-condensed) tbody tr td:last-child {
+    border-radius: 0 var(--smallrnd) var(--smallrnd) 0 !important;
     border-width: 1px 1px 1px 0 !important;
- }
+}
 
-table.table.table-hover tr.info td,
-table.table.table-hover tr:focus td,
-table.table.table-hover tr:hover td {
-    background-color: var(--hovergrayc) !important
+table.table.table-hover:not(.table-condensed) tr:is(.info, :focus, :hover) td {
+    background-color: var(--hovergrayc) !important;
+    transition: background-color var(--transfast);
 }
 
 tr.active td {
@@ -471,7 +503,7 @@ div.pull-right button.btn-info:is(:hover, :focus, :active) {
     border-top-left-radius: var(--smallrnd);
     border-bottom-left-radius: var(--smallrnd);
     border-style: none;
-    padding: 6px, 8px
+    padding: 6px 8px
 }
 
 div.pull-right button.btn-danger,
@@ -481,7 +513,7 @@ div.pull-right button.btn-danger:is(:hover, :focus, :active) {
     border-top-right-radius: var(--smallrnd);
     border-bottom-right-radius: var(--smallrnd);
     border-style: none;
-    padding: 6px, 8px
+    padding: 6px 8px
 }
 
 div.well button.btn-success {
@@ -510,6 +542,7 @@ ul.nav-tabs {
     border-bottom: var(--border);
 }
 
+/* Tabs divider */
 ul.nav-tabs li:not(:last-child)::after {
     content: "";
     position: absolute;
@@ -538,7 +571,9 @@ ul.nav-tabs li a {
 ul.nav-tabs li.active a,
 ul.nav-tabs li.active a:is(:hover, :focus, :active) {
     background: var(--bmlc) !important;
-    color: var(--textcolor)
+    color: var(--textcolor);
+    border: var(--border) !important;
+    border-bottom-width: 0 !important;
 }
 
 ul.nav-tabs li a:is(:hover, :focus, :active) {
@@ -622,7 +657,6 @@ input.form-control:is(::placeholder, :placeholder-shown, :hover, :focus, :active
 div.baseRow div.alert.alert-danger {
     background-color: var(--alertc);
     font-size: 14px;
-    background-color: var(--alertc)
 }
 
 div.panel-collapse>div:first-child {
@@ -733,8 +767,9 @@ form#w0 a.btn.btn-secondary {
 }
 
 div.panel.panel-info {
-    border-radius: var(--infrnd);
-    border-color: var(--bdc) !important
+    background: var(--blc);
+    /*border-radius: var(--infrnd);*/
+    /*border-color: var(--bdc) !important*/
 }
 
 div.panel.panel-info div.panel-heading {
@@ -799,11 +834,27 @@ div.modal-dialog div.modal-content div.modal-header.bg-success {
     background: var(--darkgreenc) !important
 }
 
-button.btn-success,
-button.btn-success:is(:hover, :focus, :active) {
+button.btn-success[type=submit],
+button.btn-success[type=submit]:is(:hover, :focus, :active) {
     background: var(--dlc) !important;
     border-radius: var(--medrnd) !important;
     border-style: none
+}
+
+ul.list-group li,
+ul.list-group li span {
+    background: var(--blc);
+    color: var(--textcolor) !important;
+}
+
+ul.list-group li:first-child {
+    border-top-left-radius: var(--bigrnd);
+    border-top-right-radius: var(--bigrnd);
+}
+
+ul.list-group li:last-child {
+    border-bottom-left-radius: var(--bigrnd);
+    border-bottom-right-radius: var(--bigrnd);
 }
 
 ul.list-group li,
@@ -901,7 +952,6 @@ nav.navbar-inverse.navbar div.container div ul.navbar-nav.nav li ul.dropdown-men
 table tr.odd td {
     background: var(--blc) !important;
 }
-
 table tr.even td {
     background: var(--bdc) !important;
 }
@@ -911,34 +961,41 @@ div.list-group a.list-group-item {
     border-radius: var(--smallrnd) !important;
 }
 
+/* ALERTS */
 div.alert.alert-danger {
     border-radius: var(--medrnd);
     color: var(--textcolor);
     background-color: var(--alertd) !important;
 }
-
 div.alert.alert-warning {
-    border-radius: var(--medrnd);
-    color: var(--textcolor);
-    background-color: var(--alertd) !important;
+    border-radius: var(--bigrnd);
+    color: var(--alertwtext) !important;
+    background-color: var(--alertw) !important;
+}
+div.alert.alert-warning a {
+    color: inherit !important;
 }
 
+
+/* PANEL-INFO */
 div.panel.panel-info {
     border-radius: var(--bigrnd) !important;
 }
-
 div.panel.panel-info div:only-child {
     border-radius: var(--bigrnd) !important;
 }
-
 div.panel.panel-info div:first-child {
     border-top-right-radius: var(--bigrnd) !important;
     border-top-left-radius: var(--bigrnd) !important;
 }
-
 div.panel.panel-info div:last-child {
     border-bottom-right-radius: var(--bigrnd) !important;
     border-bottom-left-radius: var(--bigrnd) !important;
+}
+
+
+nav.navbar-inverse.navbar * {
+    color: var(--textcolor) !important;
 }
 
 ul.dropdown-menu {
@@ -950,4 +1007,16 @@ ul.dropdown-menu {
 
 .navbar-inverse .navbar-header .navbar-toggle {
     border-color: transparent !important;
+}
+
+.col-md-3, .col-md-4, .col-md-5 {
+    padding-left: var(--lenmid) !important;
+    padding-right: var(--lenmid) !important;
+}
+
+.well, .panel, .breadcrumb, .alert {
+    margin-bottom: var(--lenmid2x) !important;
+}
+.margin-top {
+    margin-top: var(--lenmid2x) !important;
 }
