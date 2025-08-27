@@ -74,8 +74,8 @@ function updateTheme(theme, beatification = false) {
             js: ["js/main.js", "js/" + theme_names[theme] + ".js"],
             css: (
                 beatification
-                ? ["assets/css/main.css", "assets/css/" + theme_names[theme] + ".css", "assets/css/beaty_navbar.css"]
-                : ["assets/css/main.css", "assets/css/" + theme_names[theme] + ".css"]
+                ? ["assets/css/main.css", "assets/css/common.css", "assets/css/" + theme_names[theme] + ".css", "assets/css/beaty_navbar.css"]
+                : ["assets/css/main.css", "assets/css/common.css", "assets/css/" + theme_names[theme] + ".css"]
             )
         }]);
     } else {
