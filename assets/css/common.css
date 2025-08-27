@@ -1020,3 +1020,83 @@ ul.dropdown-menu {
 .margin-top {
     margin-top: var(--lenmid2x) !important;
 }
+
+
+/* Header in tables like "Disciplines" */
+table.table.table-hover:not(.table-condensed) thead tr/*.click.hidden-md*/,
+table.table.table-hover:not(.table-condensed) thead tr/*.click.hidden-lg*/ {
+    background: var(--bdc) !important;
+    height: 44px !important;
+}
+table.table.table-hover:not(.table-condensed) thead tr/*.click.hidden-md*/ th,
+table.table.table-hover:not(.table-condensed) thead tr/*.click.hidden-lg*/ th {
+    border: none !important;
+    /*border-top: var(--border) !important;*/
+    /*border-bottom: var(--border) !important;*/
+    vertical-align: middle !important;
+}
+table.table.table-hover:not(.table-condensed) thead tr/*.click.hidden-md*/ th:first-child,
+table.table.table-hover:not(.table-condensed) thead tr/*.click.hidden-lg*/ th:first-child {
+    /*border-left: var(--border) !important;*/
+    border-radius: var(--smallrnd) 0 0 var(--smallrnd) !important;
+}
+table.table.table-hover:not(.table-condensed) thead tr/*.click.hidden-md*/ th:last-child,
+table.table.table-hover:not(.table-condensed) thead tr/*.click.hidden-lg*/ th:last-child {
+    /*border-right: var(--border) !important;*/
+    border-radius: 0 var(--smallrnd) var(--smallrnd) 0 !important;
+}
+
+
+/* NEWS TABLE */
+#news table.table.table-bordered {
+    border: none !important;
+    background: none !important;
+    display: block !important;
+}
+#news table.table.table-bordered tbody {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    row-gap: var(--lenmid);
+    column-gap: var(--lenlarge2x);
+    align-items: stretch;
+    justify-items: center;
+}
+#news table.table.table-bordered tbody tr {
+    display: flex !important;
+    flex-direction: column;
+    width: 100% !important;
+    max-width: 800px !important;
+    min-height: 128px;
+    background: var(--blc) !important;
+    border-radius: var(--medrnd) !important;
+    border: var(--border) !important;
+    padding: 12px !important;
+    row-gap: var(--lensmall);
+}
+#news table.table.table-bordered:not(:has(>thead)) tbody tr:first-child {
+    display: none !important;
+}
+#news table.table.table-bordered tbody tr td {
+    border: none !important;
+    display: block !important;
+    padding: 0 !important;
+}
+#news table.table.table-bordered tbody tr td:first-child {
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    opacity: 80% !important;
+}
+#news table.table.table-bordered tbody tr td:nth-child(2) {
+     flex-grow: 1;
+ }
+#news table.table.table-bordered tbody tr td a.glyphicon {
+    font-size: 1px !important;
+    visibility: hidden;
+}
+#news table.table.table-bordered tbody tr td a.glyphicon::after {
+    content: "Открыть новость";
+    font-weight: 500 !important;
+    font-size: 12px !important;
+    visibility: visible !important;
+    opacity: 80% !important;
+}
