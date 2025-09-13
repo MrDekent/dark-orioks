@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "css_path": {
+      "type": "string",
+      "format": "uri"
+    },
+    "script_path": {
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": ["id", "name"]
+}
